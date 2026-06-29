@@ -11,7 +11,7 @@
 
   /* ---------- конфіг і клієнт ---------- */
   var cfg = window.SPARK_CONFIG || {};
-  var TABLE = cfg.TABLE || "progress";
+  var TABLE = cfg.TABLE || "spark_progress";
   var hasCfg = !!cfg.SUPABASE_URL && !!cfg.SUPABASE_ANON_KEY &&
                cfg.SUPABASE_URL.indexOf("http") === 0 &&
                cfg.SUPABASE_URL.indexOf("ВСТАВ") === -1 &&
@@ -43,17 +43,27 @@
   function loadProgress() {
     state.store = {};
     if (mode !== "cloud" || !state.user) return Promise.resolve();
-    return sb.from(TABLE).select("data").eq("user_id", state.user.id).maybeSingle()
-      .then(function (res) { if (res && res.data && res.data.data) state.store = res.data.data; })
-      .catch(function () {});
+    return sb.from(TABLE)
+      .select("data")
+      .eq("user_id", state.user.id)
+      .limit(1)
+      .then(function (res) {
+        if (res.error) { console.warn("SPARK loadProgress:", res.error.message); return; }
+        if (res.data && res.data.length > 0 && res.data[0].data) {
+          state.store = res.data[0].data;
+        }
+      })
+      .catch(function (e) { console.warn("SPARK loadProgress catch:", e); });
   }
   function saveProgress() {
     if (mode !== "cloud" || !state.user) return Promise.resolve({ ok: false, error: "Немає входу." });
     return sb.from(TABLE).upsert(
       { user_id: state.user.id, data: state.store, updated_at: new Date().toISOString() },
       { onConflict: "user_id" }
-    ).then(function (res) { return { ok: !res.error, error: res.error ? res.error.message : null }; })
-     .catch(function (e) { return { ok: false, error: String(e) }; });
+    ).then(function (res) {
+      if (res.error) console.warn("SPARK saveProgress:", res.error.message);
+      return { ok: !res.error, error: res.error ? res.error.message : null };
+    }).catch(function (e) { console.warn("SPARK saveProgress catch:", e); return { ok: false, error: String(e) }; });
   }
   function translateErr(m) {
     m = (m || "").toLowerCase();
@@ -82,8 +92,12 @@
       return sb.auth.signUp({ email: email, password: password, options: { data: { name: name } } })
         .then(function (res) {
           if (res.error) return { ok: false, error: translateErr(res.error.message) };
-          if (res.data.session) { state.user = mapUser(res.data.user); return loadProgress().then(function () { return { ok: true }; }); }
-          return { ok: true, needConfirm: true };
+          // needConfirm = email підтвердження увімкнено → session ще немає
+          if (!res.data.session) return { ok: true, needConfirm: true };
+          // Сесія є — встановлюємо юзера, НЕ читаємо таблицю (рядка ще немає)
+          state.user = mapUser(res.data.user);
+          state.store = {};
+          return { ok: true };
         });
     },
     login: function (email, password) {

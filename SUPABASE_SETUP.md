@@ -23,7 +23,15 @@
 1. У лівому меню відкрий **SQL Editor** → **New query**.
 2. Відкрий файл **`supabase_setup.sql`** з цього проєкту, скопіюй увесь його вміст у вікно запиту.
 3. Натисни **Run** (або Ctrl/Cmd + Enter).
-4. Має з'явитися «Success. No rows returned» — таблицю `progress` із захистом (RLS) створено.
+4. У нижній частині редактора з'явиться результат — має бути рядок:
+
+   | table_name      | row_security |
+   |-----------------|--------------|
+   | spark_progress  | YES          |
+
+   Якщо бачиш цей рядок — таблицю створено правильно. Якщо результат порожній — спробуй виконати скрипт ще раз або перевір, що не залишилось незакритих транзакцій.
+
+> **Важливо:** таблиця називається `spark_progress` (не просто `progress`) — це уникає конфліктів із зарезервованими словами PostgreSQL.
 
 ---
 
@@ -88,3 +96,55 @@ window.SPARK_CONFIG = {
 ## Якщо база ще не під'єднана
 
 Доки в `js/config.js` стоять заглушки, сайт працює в режимі «лише читання»: уроки, схеми, код, тести й довідник доступні, а на сторінці входу показується повідомлення, що базу ще не під'єднано. Нічого не ламається.
+
+---
+
+## 🛠 Діагностика типових помилок
+
+### «invalid path specified in request url»
+Ця помилка означає, що JS-клієнт звертається до таблиці, якої немає або до якої немає доступу.
+
+**Крок 1 — перевір, чи таблиця існує:**
+Supabase → SQL Editor → виконай:
+```sql
+select table_name, row_security
+  from information_schema.tables
+ where table_schema = 'public' and table_name = 'spark_progress';
+```
+Якщо результат **порожній** — таблицю не створено. Виконай `supabase_setup.sql` ще раз.
+
+**Крок 2 — перевір RLS-політики:**
+```sql
+select policyname, cmd from pg_policies
+ where tablename = 'spark_progress';
+```
+Має бути три рядки: `own_select`, `own_insert`, `own_update`.
+Якщо їх немає — виконай тільки блок `create policy` зі скрипту.
+
+**Крок 3 — перевір `config.js`:**
+- `SUPABASE_URL` — повинен починатися з `https://` і **не** містити `/` в кінці.
+- `SUPABASE_ANON_KEY` — довгий рядок, що починається з `eyJ`.
+- `TABLE` — має бути рівно `"spark_progress"`.
+
+**Крок 4 — якщо таблиця `progress` вже існує зі старого скрипту:**
+```sql
+-- перейменуй стару таблицю
+alter table public.progress rename to spark_progress;
+-- і перестворити політики:
+drop policy if exists "own_select" on public.spark_progress;
+create policy "own_select" on public.spark_progress
+  for select using ( auth.uid() = user_id );
+drop policy if exists "own_insert" on public.spark_progress;
+create policy "own_insert" on public.spark_progress
+  for insert with check ( auth.uid() = user_id );
+drop policy if exists "own_update" on public.spark_progress;
+create policy "own_update" on public.spark_progress
+  for update using ( auth.uid() = user_id )
+  with check ( auth.uid() = user_id );
+```
+
+### «User already registered»
+Учень з таким email вже є. Попроси увійти замість реєстрації, або видали користувача в Authentication → Users і зареєструй заново.
+
+### Реєстрація проходить, але прогрес не зберігається
+Перевір Console браузера (F12 → Console) — там будуть повідомлення `SPARK loadProgress:` або `SPARK saveProgress:` з детальним описом помилки.
