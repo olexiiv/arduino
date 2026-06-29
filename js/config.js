@@ -8,6 +8,6 @@
    ============================================================ */
 window.SPARK_CONFIG = {
   SUPABASE_URL:      "https://bimbdxhicylmfzhcjtmg.supabase.co",          // напр. https://abcdefgh.supabase.co
-  SUPABASE_ANON_KEY: "sb_publishable_DzGhI1et1LolxP9SISaKSw_jT6HSUhR",     // рядок, що починається з eyJ...
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJpbWJkeGhpY3lsbWZ6aGNqdG1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI3Mzk4NzAsImV4cCI6MjA5ODMxNTg3MH0.cQQd9igWjUgjvmMutp9kAinq71-x75mra0V0g_6za8Q",     // рядок, що починається з eyJ...
   TABLE: "spark_progress"                          // назва таблиці (НЕ змінюй без потреби)
 };
