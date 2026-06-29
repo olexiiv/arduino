@@ -7,7 +7,7 @@
    збереження прогресу (читати уроки можна, входу немає).
    ============================================================ */
 window.SPARK_CONFIG = {
-  SUPABASE_URL:      "ВСТАВ_URL_ПРОЄКТУ",          // напр. https://abcdefgh.supabase.co
-  SUPABASE_ANON_KEY: "ВСТАВ_ANON_PUBLIC_КЛЮЧ",     // рядок, що починається з eyJ...
+  SUPABASE_URL:      "https://bimbdxhicylmfzhcjtmg.supabase.co",          // напр. https://abcdefgh.supabase.co
+  SUPABASE_ANON_KEY: "sb_publishable_DzGhI1et1LolxP9SISaKSw_jT6HSUhR",     // рядок, що починається з eyJ...
   TABLE: "spark_progress"                          // назва таблиці (НЕ змінюй без потреби)
 };
