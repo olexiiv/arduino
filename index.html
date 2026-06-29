@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SPARK — вчимося Arduino з нуля</title>
+<meta name="description" content="SPARK — майстерня сигналів. Інтерактивний курс Arduino для учнів 5–7 класів НУШ. Навчайся з реальним набором або онлайн у Tinkercad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Головна</a></li>
+      <li><a href="program.html">Програма</a></li>
+      <li><a href="reference.html">Довідник</a></li>
+      <li><a href="tinkercad/practice1.html">Практика</a></li>
+      <li><a href="about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="stagger measure">
+        <span class="eyebrow">Майстерня сигналів · 5–7 класи</span>
+        <h1>Програмуй майбутнє <span class="accent-word">своїми руками</span></h1>
+        <p class="lead">SPARK — це курс, де ти з нуля навчишся керувати електронікою за допомогою Arduino. Світлодіоди, датчики, власні пристрої — крок за кроком, своїми руками або просто у браузері.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="lessons/lesson1.html">Почати перший урок →</a>
+          <a class="btn btn-ghost" href="program.html">Переглянути програму</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="n">0 ₴</div><div class="l">щоб почати онлайн</div></div>
+          <div class="hero-stat"><div class="n">45 хв</div><div class="l">один урок</div></div>
+          <div class="hero-stat"><div class="n">2</div><div class="l">шляхи навчання</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ДВА ШЛЯХИ -->
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Обери свій шлях</span>
+        <h2>Два рівноцінні способи вчитися</h2>
+        <p>Не маєш плати Arduino? Це не перешкода. Онлайн-симулятор Tinkercad дає той самий результат — це повноцінний шлях, а не запасний варіант.</p>
+      </div>
+      <div class="paths reveal">
+        <div class="path">
+          <span class="path-tag">🧰 Шлях A</span>
+          <h3>З реальним набором</h3>
+          <p class="muted">Збираєш схеми руками й бачиш, як справжній світлодіод спалахує на столі.</p>
+          <ul>
+            <li>Arduino UNO + USB-кабель</li>
+            <li>Макетна плата та дроти</li>
+            <li>Світлодіоди, резистори, датчики</li>
+          </ul>
+        </div>
+        <div class="path">
+          <span class="path-tag">💻 Шлях B</span>
+          <h3>Онлайн у Tinkercad</h3>
+          <p class="muted">Збираєш ту саму схему у браузері — безкоштовно, без жодного обладнання.</p>
+          <ul>
+            <li>Лише комп'ютер і браузер</li>
+            <li>Віртуальна плата та компоненти</li>
+            <li>Запуск коду в симуляції</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЩО ТИ СТВОРИШ -->
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Результат</span>
+        <h2>Що ти навчишся робити</h2>
+      </div>
+      <div class="card-grid cols-3 reveal">
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">💡</div>
+          <h3>Керувати світлом</h3>
+          <p>Вмикати, вимикати й блимати світлодіодами за власним алгоритмом.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🚦</div>
+          <h3>Будувати системи</h3>
+          <p>Зібрати справжній «Світлофор» із трьох світлодіодів і запрограмувати його роботу.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🔁</div>
+          <h3>Писати код</h3>
+          <p>Опанувати основи C++ для Arduino: змінні, функції та цикл <code>for</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЯК ПРАЦЮЄ -->
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Як це працює</span>
+        <h2>Кожен урок — одна завершена історія</h2>
+      </div>
+      <div class="card reveal">
+        <ol class="steps">
+          <li><strong>Теорія коротко.</strong> Розбираємо, як працює компонент, простими словами та зі схемами.</li>
+          <li><strong>Складаємо схему.</strong> Покрокова інструкція для реального набору й для Tinkercad.</li>
+          <li><strong>Пишемо код.</strong> Готовий приклад із поясненням кожного рядка та кнопкою «копіювати».</li>
+          <li><strong>Перевіряємо себе.</strong> Інтерактивний тест без оцінок — лише підказки, що й чому.</li>
+          <li><strong>Творимо своє.</strong> Завдання-виклик для портфоліо й коротка рефлексія.</li>
+        </ol>
+        <div class="mt-2">
+          <a class="btn btn-primary" href="lessons/lesson1.html">Відкрити перший урок →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="program.html">Програма курсу</a></li>
+          <li><a href="lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="reference.html">Довідник</a></li>
+          <li><a href="about.html">Про проєкт</a></li>
+          <li><a href="about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

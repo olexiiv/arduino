@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моє портфоліо — SPARK</title>
+<meta name="description" content="Твоє портфоліо: завершені уроки, прогрес курсу та власні роздуми. Формувальне оцінювання без балів за підходом НУШ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Головна</a></li>
+      <li><a href="../program.html">Програма</a></li>
+      <li><a href="../reference.html">Довідник</a></li>
+      <li><a href="../tinkercad/practice1.html">Практика</a></li>
+      <li><a href="../about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="../pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section>
+    <div class="container" id="portfolio-root">
+      <div class="section-head reveal">
+        <span class="eyebrow">Мій шлях</span>
+        <h2>Моє портфоліо</h2>
+        <p>Тут збирається все, що ти зробив: завершені уроки та власні роздуми. Це і є твоє оцінювання — без балів, лише твоє зростання. Усе зберігається за твоїм профілем на цьому пристрої.</p>
+      </div>
+      <!-- Якщо учень НЕ увійшов -->
+      <div class="card reveal" id="pf-auth-gate" hidden>
+        <div class="card-icon" aria-hidden="true">🔐</div>
+        <h3>Спочатку увійди</h3>
+        <p>Щоб бачити власний прогрес, завершені уроки та свої роздуми — створи профіль або увійди в наявний.</p>
+        <a class="btn btn-primary mt-1" href="login.html">Вхід / Реєстрація →</a>
+      </div>
+
+      <!-- Якщо учень увійшов -->
+      <div id="pf-content" hidden>
+        <div class="progress-wrap">
+          <span class="chip chip-go" id="pf-hello"></span>
+          <button class="btn btn-ghost" type="button" data-logout>Вийти</button>
+        </div>
+
+        <div class="card mt-1" id="pf-progress">
+          <div class="progress-wrap">
+            <strong>Завершено уроків:</strong>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <span class="progress-num" id="pf-progress-num">0 завершено</span>
+          </div>
+        </div>
+
+        <h3 class="mt-2">✅ Завершені уроки</h3>
+        <p id="pf-empty" class="muted">Поки що немає завершених уроків. Почни з <a href="../lessons/lesson1.html">першого уроку</a> — і він з'явиться тут.</p>
+        <div class="card-grid cols-2 mt-1" id="pf-done"></div>
+
+        <h3 class="mt-2">🪞 Мої роздуми</h3>
+        <p id="pf-empty-ref" class="muted">Тут з'являться твої відповіді з рефлексії після уроків.</p>
+        <div class="card-grid cols-2 mt-1" id="pf-reflections"></div>
+
+        <div class="callout tip mt-2">
+          <h4>📌 Порада для портфоліо</h4>
+          <p>До портфоліо варто додавати й те, що не зберігається автоматично: скріншоти схем із Tinkercad, фото зібраних пристроїв, твій код для завдань-викликів. Запитай учителя, як саме здавати ці матеріали у вашому класі.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="../program.html">Програма курсу</a></li>
+          <li><a href="../lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="../tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="../pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="../reference.html">Довідник</a></li>
+          <li><a href="../about.html">Про проєкт</a></li>
+          <li><a href="../about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>

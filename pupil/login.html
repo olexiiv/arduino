@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вхід для учнів — SPARK</title>
+<meta name="description" content="Реєстрація та вхід учня. Кожен учень бачить власний прогрес у курсі SPARK.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Головна</a></li>
+      <li><a href="../program.html">Програма</a></li>
+      <li><a href="../reference.html">Довідник</a></li>
+      <li><a href="../tinkercad/practice1.html">Практика</a></li>
+      <li><a href="../about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="../pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section>
+    <div class="container" id="auth-root">
+      <div class="section-head reveal">
+        <span class="eyebrow">Профіль учня</span>
+        <h2>Вхід для учнів</h2>
+        <p>Створи власний профіль — і весь твій прогрес, тести та роздуми зберігатимуться у хмарі. Заходь із будь-якого пристрою.</p>
+      </div>
+
+      <div class="callout safety" id="auth-disabled" hidden>
+        <h4>⏳ Базу даних ще не під'єднано</h4>
+        <p>Вхід тимчасово недоступний. Попроси вчителя під'єднати Supabase (покрокова інструкція — у файлі <code>SUPABASE_SETUP.md</code>). Уроки й довідник доступні й без входу.</p>
+      </div>
+
+      <div class="callout tip" id="auth-already" hidden>
+        <h4>👋 Ти вже увійшов як <span id="auth-already-name">…</span></h4>
+        <p>Можеш перейти до <a href="portfolio.html">свого портфоліо</a> або <button class="link-danger" type="button" data-logout>вийти</button>, щоб зайти під іншим профілем.</p>
+      </div>
+
+      <div class="card-grid cols-2 reveal mt-1">
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">✨</div>
+          <h3>Я новенький</h3>
+          <p class="muted small">Створи профіль за пів хвилини.</p>
+          <div class="field">
+            <label for="reg-name">Ім'я або псевдонім</label>
+            <input type="text" id="reg-name" autocomplete="name" placeholder="Напр. Олег">
+          </div>
+          <div class="field">
+            <label for="reg-email">Логін (у форматі пошти)</label>
+            <p class="hint">Можна шкільний, напр. <code>oleh@spark.class</code> — справжня скринька не потрібна.</p>
+            <input type="email" id="reg-email" autocomplete="email" placeholder="oleh@spark.class">
+          </div>
+          <div class="field">
+            <label for="reg-pass">Пароль (мінімум 6 символів)</label>
+            <p class="hint">Запам'ятай його — він захищає твій профіль.</p>
+            <input type="password" id="reg-pass" autocomplete="new-password" placeholder="••••••">
+          </div>
+          <button class="btn btn-primary" type="button" data-register>Зареєструватися</button>
+          <p class="auth-msg" id="reg-msg" role="alert"></p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">🔑</div>
+          <h3>У мене вже є профіль</h3>
+          <div class="field">
+            <label for="login-email">Логін</label>
+            <input type="email" id="login-email" autocomplete="email" placeholder="oleh@spark.class">
+          </div>
+          <div class="field">
+            <label for="login-pass">Пароль</label>
+            <input type="password" id="login-pass" autocomplete="current-password" placeholder="••••••">
+          </div>
+          <button class="btn btn-go" type="button" data-login>Увійти</button>
+          <p class="auth-msg" id="login-msg" role="alert"></p>
+          <p class="hint mt-1">Забув пароль? Звернися до вчителя — він скине його в адмінпанелі Supabase.</p>
+        </article>
+
+      </div>
+
+      <div class="callout mt-2 reveal">
+        <h4>🔒 Як зберігається прогрес</h4>
+        <p>Акаунт і прогрес зберігаються в захищеній хмарній базі (Supabase): ти бачиш свій прогрес із будь-якого пристрою, де увійдеш. Кожен учень має доступ лише до власних даних.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="../program.html">Програма курсу</a></li>
+          <li><a href="../lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="../tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="../pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="../reference.html">Довідник</a></li>
+          <li><a href="../about.html">Про проєкт</a></li>
+          <li><a href="../about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>

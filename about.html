@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Про проєкт — SPARK</title>
+<meta name="description" content="Про навчальний проєкт SPARK: для кого він, як ним користуватися та відповіді на часті запитання.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Головна</a></li>
+      <li><a href="program.html">Програма</a></li>
+      <li><a href="reference.html">Довідник</a></li>
+      <li><a href="tinkercad/practice1.html">Практика</a></li>
+      <li><a href="about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Про проєкт</span>
+        <h2>SPARK — майстерня сигналів</h2>
+        <p class="lead">Курс, де учні 5–7 класів навчаються Arduino з нуля: збирають схеми, пишуть код і оживляють власні пристрої — з реальним набором або онлайн.</p>
+      </div>
+
+      <div class="card-grid cols-3 reveal">
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🎓</div>
+          <h3>Для учнів</h3>
+          <p>Покрокові уроки без складних слів. Кожен може почати з нуля й рухатися у власному темпі.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">👩‍🏫</div>
+          <h3>Для вчителів</h3>
+          <p>Готова структура за програмою НУШ: компетентності, формувальне оцінювання, портфоліо.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">🌍</div>
+          <h3>Для всіх</h3>
+          <p>Немає обладнання? Tinkercad дає той самий досвід безкоштовно — це рівноцінний шлях.</p>
+        </div>
+      </div>
+
+      <!-- Принципи -->
+      <h3 class="mt-2 reveal">Наші принципи</h3>
+      <div class="card reveal mt-1">
+        <ul class="steps">
+          <li><strong>Навчання через дію.</strong> Спершу збираємо й бачимо результат, а теорія допомагає зрозуміти, чому це працює.</li>
+          <li><strong>Без страху помилок.</strong> Помилка — це частина навчання. Тести дають підказки, а не оцінки.</li>
+          <li><strong>Два рівноцінні шляхи.</strong> Реальний набір і Tinkercad ведуть до однакового результату.</li>
+          <li><strong>Портфоліо замість балів.</strong> Учень бачить власне зростання, а не цифру в журналі.</li>
+        </ul>
+      </div>
+
+      <!-- НУШ -->
+      <div class="callout tip mt-2 reveal">
+        <h4>🇺🇦 Відповідність НУШ</h4>
+        <p>Курс побудовано навколо ключових компетентностей: у природничих науках і технологіях, математичної, інформаційно-цифрової та вміння вчитися. Оцінювання — формувальне, через портфоліо й рефлексію, без числових балів.</p>
+      </div>
+
+      <!-- FAQ -->
+      <h2 class="mt-2 reveal" id="faq">Питання та відповіді</h2>
+      <div class="accordion mt-1 reveal">
+        <div class="acc-item">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq1">
+              Чи потрібно купувати обладнання? <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="faq1">
+            <p>Ні. Увесь курс можна пройти безкоштовно в онлайн-симуляторі Tinkercad. Реальний набір Arduino — приємний бонус, але не обов'язковий.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq2">
+              З якого віку можна починати? <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="faq2">
+            <p>Курс розрахований на учнів 5–7 класів (приблизно 10–13 років). Попередні знання з електроніки чи програмування не потрібні.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq3">
+              Як виставляються оцінки? <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="faq3">
+            <p>Числових оцінок немає. Замість них — портфоліо: завершені уроки, виконані виклики й рефлексія. Це формувальне оцінювання за підходом НУШ.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq4">
+              Де зберігається мій прогрес? <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="faq4">
+            <p>У пам'яті твого браузера (localStorage) на цьому пристрої. Тому на іншому комп'ютері прогрес почнеться спочатку, а очищення даних браузера його скине.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq5">
+              Якою мовою програмування ми пишемо? <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="faq5">
+            <p>Це C++ для Arduino. Не лякайся назви — ми починаємо з найпростіших команд і додаємо нове поступово, урок за уроком.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lesson-nav reveal">
+        <a class="btn btn-ghost" href="index.html">← На головну</a>
+        <a class="btn btn-primary" href="lessons/lesson1.html">Почати вчитися →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="program.html">Програма курсу</a></li>
+          <li><a href="lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="reference.html">Довідник</a></li>
+          <li><a href="about.html">Про проєкт</a></li>
+          <li><a href="about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

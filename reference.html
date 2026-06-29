@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Довідник — SPARK</title>
+<meta name="description" content="Швидкий довідник Arduino: компоненти, функції, типові помилки та глосарій термінів. З пошуком.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Головна</a></li>
+      <li><a href="program.html">Програма</a></li>
+      <li><a href="reference.html">Довідник</a></li>
+      <li><a href="tinkercad/practice1.html">Практика</a></li>
+      <li><a href="about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Швидка допомога</span>
+        <h2>Довідник</h2>
+        <p>Усе важливе в одному місці: компоненти, команди коду, типові помилки та терміни. Скористайся пошуком.</p>
+      </div>
+
+      <div class="field reveal">
+        <label for="ref-search">Пошук у довіднику</label>
+        <input type="search" id="ref-search" placeholder="Наприклад: резистор, digitalWrite, катод…" aria-label="Пошук у довіднику">
+      </div>
+
+      <p id="ref-empty" class="muted" hidden>Нічого не знайдено. Спробуй інше слово.</p>
+
+      <!-- КОМПОНЕНТИ -->
+      <h3 class="mt-2">🧩 Компоненти</h3>
+      <div class="card-grid cols-2 mt-1">
+        <div class="card" data-ref="світлодіод led анод катод">
+          <h3>Світлодіод (LED)</h3>
+          <p>Світиться, коли струм тече від анода (+) до катода (−). Анод — довша ніжка. Завжди підключай через резистор.</p>
+        </div>
+        <div class="card" data-ref="резистор опір ом 220">
+          <h3>Резистор</h3>
+          <p>Обмежує струм. Опір вимірюють в омах (Ом). Номінал зашифровано кольоровими смужками. Для світлодіода — 220 Ом.</p>
+        </div>
+        <div class="card" data-ref="макетна плата breadboard">
+          <h3>Макетна плата</h3>
+          <p>Дозволяє складати схеми без паяння. Краї — лінії живлення (+/−), центр — короткі ряди поперек плати.</p>
+        </div>
+        <div class="card" data-ref="arduino uno мікроконтролер плата">
+          <h3>Arduino UNO</h3>
+          <p>Плата-мікроконтролер: «мозок» твоїх пристроїв. Має цифрові піни (D0–D13) і живлення (5 В, GND).</p>
+        </div>
+      </div>
+
+      <!-- ФУНКЦІЇ -->
+      <h3 class="mt-2">⌨️ Функції Arduino</h3>
+      <div class="card-grid cols-2 mt-1">
+        <div class="card" data-ref="pinmode output input налаштування піна">
+          <h3><code>pinMode(pin, OUTPUT)</code></h3>
+          <p>Налаштовує пін як «вихід» (керуємо чимось) або «вхід» (зчитуємо). Викликають у <code>setup()</code>.</p>
+        </div>
+        <div class="card" data-ref="digitalwrite high low увімкнути вимкнути">
+          <h3><code>digitalWrite(pin, HIGH)</code></h3>
+          <p>Подає на пін напругу (<code>HIGH</code>) або вимикає її (<code>LOW</code>). Так вмикаємо/вимикаємо світлодіод.</p>
+        </div>
+        <div class="card" data-ref="delay пауза затримка мілісекунди">
+          <h3><code>delay(ms)</code></h3>
+          <p>Пауза в програмі на задану кількість мілісекунд. <code>delay(1000)</code> — це 1 секунда.</p>
+        </div>
+        <div class="card" data-ref="for цикл повторення лічильник ітерація">
+          <h3><code>for (...) { ... }</code></h3>
+          <p>Цикл для повторення дій відому кількість разів. Має лічильник, умову та крок: <code>for (int i = 0; i &lt; 3; i++)</code>.</p>
+        </div>
+      </div>
+
+      <!-- ПОМИЛКИ -->
+      <h3 class="mt-2">🛠️ Типові помилки</h3>
+      <div class="accordion mt-1">
+        <div class="acc-item" data-ref="світлодіод не світить помилка">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="err1">
+              Світлодіод не світиться <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="err1">
+            <p>Найчастіше переплутані анод і катод. Переверни світлодіод. Перевір, чи резистор і всі дроти в правильних рядах макетної плати.</p>
+          </div>
+        </div>
+        <div class="acc-item" data-ref="код не завантажується upload помилка порт">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="err2">
+              Код не завантажується на плату <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="err2">
+            <p>Перевір, чи обрано правильну плату й порт у меню «Інструменти». Спробуй інший USB-кабель або порт.</p>
+          </div>
+        </div>
+        <div class="acc-item" data-ref="помилка компіляції крапка з комою синтаксис">
+          <h3>
+            <button class="acc-trigger" type="button" aria-expanded="false" aria-controls="err3">
+              Помилка компіляції (червоний текст) <span class="plus" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="acc-panel" id="err3">
+            <p>Найчастіше — забута крапка з комою <code>;</code> в кінці рядка або незакрита дужка <code>{ }</code>. Уважно перечитай рядок, на який вказує помилка.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ГЛОСАРІЙ -->
+      <h3 class="mt-2">📖 Глосарій</h3>
+      <div class="card-grid cols-3 mt-1">
+        <div class="card" data-ref="анод плюс"><h3>Анод</h3><p>Вивід «+» світлодіода (довша ніжка).</p></div>
+        <div class="card" data-ref="катод мінус земля"><h3>Катод</h3><p>Вивід «−» світлодіода, іде на GND.</p></div>
+        <div class="card" data-ref="gnd земля заземлення"><h3>GND</h3><p>«Земля» — нульова точка схеми.</p></div>
+        <div class="card" data-ref="струм ампер"><h3>Струм</h3><p>Рух заряджених частинок у колі.</p></div>
+        <div class="card" data-ref="напруга вольт"><h3>Напруга</h3><p>«Тиск», що штовхає струм. Вимір — вольт (В).</p></div>
+        <div class="card" data-ref="пін pin вивід"><h3>Пін</h3><p>Контакт на платі, до якого підключають дроти.</p></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="program.html">Програма курсу</a></li>
+          <li><a href="lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="reference.html">Довідник</a></li>
+          <li><a href="about.html">Про проєкт</a></li>
+          <li><a href="about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

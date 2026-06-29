@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Практика в Tinkercad — SPARK</title>
+<meta name="description" content="Як працювати в Tinkercad крок за кроком: створити проєкт, зібрати схему, запустити симуляцію. Чек-лист складання схем.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+
+<header class="site-header">
+  <nav class="nav container" aria-label="Головна навігація">
+    <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">Головна</a></li>
+      <li><a href="../program.html">Програма</a></li>
+      <li><a href="../reference.html">Довідник</a></li>
+      <li><a href="../tinkercad/practice1.html">Практика</a></li>
+      <li><a href="../about.html">Про проєкт</a></li>
+    </ul>
+    <div class="nav-tools">
+      <a class="account-btn" data-account href="../pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
+      <div class="style-switch" role="group" aria-label="Стиль сайту">
+        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
+        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
+      </div>
+      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+  <section>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Шлях B · онлайн</span>
+        <h2>Практика в Tinkercad</h2>
+        <p>Tinkercad — це безкоштовний онлайн-симулятор. У ньому ти збираєш ту саму схему, що й на реальній платі, і запускаєш свій код прямо у браузері. Жодного обладнання не потрібно — це повноцінний шлях навчання.</p>
+        <a class="btn btn-primary mt-1" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Відкрити Tinkercad →</a>
+      </div>
+
+      <!-- Як почати -->
+      <h3 class="mt-2 reveal">Як почати за 5 кроків</h3>
+      <div class="card reveal mt-1">
+        <ol class="steps">
+          <li><strong>Зареєструйся.</strong> Зайди на tinkercad.com і створи безкоштовний акаунт (можна через Google).</li>
+          <li><strong>Створи проєкт.</strong> Натисни «Create» → «Circuit». Відкриється порожнє робоче поле.</li>
+          <li><strong>Додай компоненти.</strong> Перетягни з правої панелі Arduino UNO, макетну плату, світлодіод і резистор.</li>
+          <li><strong>З'єднай дроти.</strong> Клікай по контактах, щоб провести дроти, — як на схемі з уроку.</li>
+          <li><strong>Запусти код.</strong> Відкрий «Code», встав програму й натисни «Start Simulation».</li>
+        </ol>
+      </div>
+
+      <!-- Місце для симуляції -->
+      <h3 class="mt-2 reveal">Жива симуляція</h3>
+      <p class="reveal">Учитель може вставити сюди готовий проєкт Tinkercad для тренування (як це зробити — у <a href="../README.md">README</a>).</p>
+      <div class="embed reveal">
+        <!-- ЩОБ УВІМКНУТИ ЖИВУ СИМУЛЯЦІЮ: розкоментуй iframe і встав свій код вбудовування
+        <iframe title="Тренувальна схема у Tinkercad" loading="lazy"
+                src="https://www.tinkercad.com/embed/ВАШ_КОД_ПРОЄКТУ?editbtn=1"></iframe>
+        -->
+        <div class="embed-placeholder">
+          <div class="big" aria-hidden="true">🔧</div>
+          <p><strong>Тут з'явиться тренувальна схема</strong><br>А поки — створи власний проєкт у Tinkercad за кроками вище.</p>
+          <a class="btn btn-ghost" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Перейти до Tinkercad →</a>
+        </div>
+      </div>
+
+      <!-- Чек-лист -->
+      <h3 class="mt-2 reveal">Чек-лист складання схеми</h3>
+      <p class="reveal">Перевір це щоразу — і схема запрацює з першого разу.</p>
+      <div class="card-grid cols-2 mt-1 reveal">
+        <div class="callout tip">
+          <h4>✅ Що перевірити</h4>
+          <p>Світлодіод підключено через резистор · анод (довша ніжка) до керованого піна · катод до GND · номери пінів у коді збігаються зі схемою · усі дроти щільно з'єднані.</p>
+        </div>
+        <div class="callout safety">
+          <h4>🚫 Типові помилки</h4>
+          <p>Світлодіод без резистора · переплутані анод і катод · пін у коді не той, що на платі · забута крапка з комою <code>;</code> наприкінці рядка.</p>
+        </div>
+      </div>
+
+      <div class="callout mt-2 reveal">
+        <h4>💡 Порада</h4>
+        <p>Зібрав схему в Tinkercad? Зроби скріншот і збережи його у своєму <a href="../pupil/portfolio.html">портфоліо</a> — це частина твого навчального шляху.</p>
+      </div>
+
+      <div class="lesson-nav reveal">
+        <a class="btn btn-ghost" href="../lessons/lesson1.html">← До уроку</a>
+        <a class="btn btn-primary" href="../program.html">До програми →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="../index.html"><img class="brand-logo brand-logo--dark"  src="../img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="../img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
+        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
+      </div>
+      <div>
+        <h4>Навчання</h4>
+        <ul>
+          <li><a href="../program.html">Програма курсу</a></li>
+          <li><a href="../lessons/lesson1.html">Перший урок</a></li>
+          <li><a href="../tinkercad/practice1.html">Практика в Tinkercad</a></li>
+          <li><a href="../pupil/portfolio.html">Моє портфоліо</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Ресурси</h4>
+        <ul>
+          <li><a href="../reference.html">Довідник</a></li>
+          <li><a href="../about.html">Про проєкт</a></li>
+          <li><a href="../about.html#faq">Питання та відповіді</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
+      <span>Для учнів 5–7 класів</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>
