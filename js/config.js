@@ -10,7 +10,7 @@
    даних захищає RLS (Row Level Security) у самій базі.
    ============================================================ */
 window.SPARK_CONFIG = {
-  SUPABASE_URL:      "https://bimbdxhicylmfzhcjtmg.supabase.co/rest/v1/",          // напр. https://abcdefgh.supabase.co
+  SUPABASE_URL:      "https://bimbdxhicylmfzhcjtmg.supabase.co",          // напр. https://abcdefgh.supabase.co
   SUPABASE_ANON_KEY: "sb_publishable_DzGhI1et1LolxP9SISaKSw_jT6HSUhR",     // довгий рядок, що починається з eyJ...
   TABLE: "progress"                                // назва таблиці прогресу
 };
