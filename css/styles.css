@@ -292,6 +292,7 @@ pre code { color: var(--ink); white-space: pre; }
 .tok-fn   { color: var(--go-ink); }
 .tok-num  { color: var(--stop); }
 .tok-com  { color: var(--ink-faint); font-style: italic; }
+.tok-str  { color: var(--warn); }
 
 /* ---------- СХЕМИ / ФІГУРИ ---------- */
 figure { margin: 22px 0; }
@@ -305,6 +306,7 @@ figcaption { text-align: center; font-size: .88rem; color: var(--ink-faint); mar
 .schematic .wire-r { stroke: var(--stop); }
 .schematic .wire-y { stroke: var(--warn); }
 .schematic .wire-g { stroke: var(--go); }
+.schematic .wire-b { stroke: #3b82f6; }
 .schematic .part   { fill: none; stroke: var(--accent); stroke-width: 2.4; }
 .schematic .lbl    { fill: var(--ink); font-family: var(--font-mono); font-size: 13px; }
 .schematic .lbl-s  { fill: var(--ink-faint); font-family: var(--font-mono); font-size: 11px; }
@@ -595,3 +597,6 @@ select { appearance: none; -webkit-appearance: none; }
   border-color: var(--go);
   color: var(--go-ink);
 }
+
+/* Великий код класу в панелі вчителя */
+.chip-lg { font-size: 1rem; padding: 6px 13px; letter-spacing: .05em; }

@@ -10,29 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-<a class="skip" href="#main">Перейти до вмісту</a>
-
-<header class="site-header">
-  <nav class="nav container" aria-label="Головна навігація">
-    <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="index.html">Головна</a></li>
-      <li><a href="program.html">Програма</a></li>
-      <li><a href="reference.html">Довідник</a></li>
-      <li><a href="tinkercad/practice1.html">Практика</a></li>
-      <li><a href="about.html">Про проєкт</a></li>
-    </ul>
-    <div class="nav-tools">
-      <a class="account-btn" data-account href="pupil/login.html"><span class="ac-icon" aria-hidden="true">👤</span><span class="ac-label">Увійти</span></a>
-      <div class="style-switch" role="group" aria-label="Стиль сайту">
-        <button class="swatch swatch-signal" type="button" data-style-set="signal" aria-pressed="true" title="Сигнал (темний)" aria-label="Стиль Сигнал, темний"></button>
-        <button class="swatch swatch-arduino" type="button" data-style-set="arduino" aria-pressed="false" title="Arduino" aria-label="Стиль Arduino"></button>
-      </div>
-      <button class="icon-btn menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="nav-links" aria-label="Відкрити меню">☰</button>
-    </div>
-  </nav>
-</header>
+<body data-base="">
+<div id="site-header"></div>
 
 <main id="main">
   <section>
@@ -141,38 +120,10 @@
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <a class="brand" href="index.html"><img class="brand-logo brand-logo--dark"  src="img/logo_spark_black.gif" alt="" aria-hidden="true" width="32" height="32"><img class="brand-logo brand-logo--light" src="img/logo_spark_white.gif" alt="" aria-hidden="true" width="32" height="32">SPARK</a>
-        <p class="mt-1">Майстерня сигналів. Вчимося Arduino з нуля — з реальним набором або онлайн у Tinkercad.</p>
-      </div>
-      <div>
-        <h4>Навчання</h4>
-        <ul>
-          <li><a href="program.html">Програма курсу</a></li>
-          <li><a href="lessons/lesson1.html">Перший урок</a></li>
-          <li><a href="tinkercad/practice1.html">Практика в Tinkercad</a></li>
-          <li><a href="pupil/portfolio.html">Моє портфоліо</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Ресурси</h4>
-        <ul>
-          <li><a href="reference.html">Довідник</a></li>
-          <li><a href="about.html">Про проєкт</a></li>
-          <li><a href="about.html#faq">Питання та відповіді</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 SPARK · Навчальний проєкт для НУШ</span>
-      <span>Для учнів 5–7 класів</span>
-    </div>
-  </div>
-</footer>
+<div id="site-footer"></div>
 
+<script src="js/layout.js"></script>
+<script src="js/lessons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
 <script src="js/scripts.js"></script>

@@ -27,10 +27,8 @@ create policy "own_update" on public.spark_progress
   for update using ( auth.uid() = user_id )
   with check ( auth.uid() = user_id );
 
--- 4. Перевірка: має повернути таблицю spark_progress
-select table_name, row_security
+-- 4. Перевірка: має повернути рядок spark_progress | true
+select table_name, row_level_security
   from information_schema.tables
  where table_schema = 'public'
    and table_name   = 'spark_progress';
-
--- Якщо бачиш рядок spark_progress | YES — все правильно!

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Урок 1: Що таке Arduino і як усе влаштовано — SPARK</title>
+<meta name="description" content="Перший урок Arduino: плата UNO, встановлення Arduino IDE, вбудований світлодіод на піні 13, функції setup і loop, вивід у Serial Monitor. Для реального набору і для Tinkercad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-base="../">
+<div id="site-header"></div>
+
+<main id="main" class="container">
+<article id="lesson-root" data-lesson-id="lesson-intro">
+
+  <!-- ЗАГОЛОВОК -->
+  <section>
+    <p class="breadcrumb"><a href="../program.html">Програма</a> / Урок 1</p>
+    <h1>Що таке Arduino<br>і як усе влаштовано</h1>
+    <div class="tag-row mt-1">
+      <span>⏱ 45 хв</span><span>·</span><span>📚 5–7 класи</span><span>·</span><span data-lesson-state>Статус: у процесі</span>
+    </div>
+    <div class="chips mt-2">
+      <span class="chip chip-accent">Природничі науки і технології</span>
+      <span class="chip chip-accent">Інформаційно-цифрова</span>
+      <span class="chip">Уміння вчитися</span>
+    </div>
+  </section>
+
+  <!-- 1. МЕТА -->
+  <section>
+    <h2>🎯 Мета уроку</h2>
+    <p class="lead">Після цього уроку ти зможеш:</p>
+    <ul class="steps mt-1">
+      <li>пояснити, що таке <strong>мікроконтролер</strong> і з чого складається плата <strong>Arduino UNO</strong>;</li>
+      <li>встановити й налаштувати середовище <strong>Arduino IDE</strong>;</li>
+      <li>зрозуміти дві головні функції програми — <code>setup()</code> та <code>loop()</code>;</li>
+      <li>увімкнути й змусити блимати <strong>вбудований світлодіод</strong> (пін 13);</li>
+      <li>вивести повідомлення на комп'ютер через <strong>Serial Monitor</strong>.</li>
+    </ul>
+  </section>
+
+  <!-- 2. ЩО ЗНАДОБИТЬСЯ -->
+  <section>
+    <h2>🧩 Що знадобиться</h2>
+    <p>Найперший урок найлегший: додаткові деталі не потрібні — світлодіод уже <strong>вбудований у плату</strong>. Обери будь-який шлях.</p>
+    <div class="paths mt-1">
+      <div class="path">
+        <span class="path-tag">🧰 Реальний набір</span>
+        <h3>На столі</h3>
+        <ul>
+          <li>Плата Arduino UNO</li>
+          <li>USB-кабель (type B)</li>
+          <li>Комп'ютер із Arduino IDE</li>
+        </ul>
+      </div>
+      <div class="path">
+        <span class="path-tag">💻 Tinkercad</span>
+        <h3>Онлайн</h3>
+        <ul>
+          <li>Комп'ютер і браузер</li>
+          <li>Безкоштовний акаунт Tinkercad</li>
+          <li>Плата й код — віртуальні</li>
+          <li>Перейди в розділ <a href="../tinkercad/practice1.html">Практика</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout safety">
+      <h4>⚠️ Техніка безпеки</h4>
+      <p>Тримай плату на сухій непровідній поверхні. Не клади її на метал і не торкайся контактів мокрими руками. Під'єднуй і від'єднуй USB-кабель обережно, тримаючи за роз'єм, а не за дріт.</p>
+    </div>
+  </section>
+
+  <!-- 3. ТЕОРІЯ -->
+  <section>
+    <h2>📖 Теорія коротко</h2>
+
+    <h3 class="mt-2">Що таке Arduino UNO</h3>
+    <p>Плата UNO — це маленький комп'ютер на основі мікроконтролера <strong>ATmega328</strong>. На ній уже є все потрібне: роз'єм USB, роз'єм живлення, кнопка перезавантаження та ряди контактів (їх називають <strong>пінами</strong>), до яких підключають деталі. Живлення йде через USB або блок на 7–12 В.</p>
+
+    <p>Піни поділяють на три групи:</p>
+    <ul class="steps mt-1">
+      <li><strong>Цифрові</strong> — мають лише два стани: є напруга (≈5 В, «одиниця») або немає (0 В, «нуль»). Їх 14, шість із них можуть плавно регулювати напругу (ШІМ).</li>
+      <li><strong>Аналогові</strong> — уміють зчитувати напругу не лише «є/немає», а 1024 рівні від 0 до 5 В. Їх 6.</li>
+      <li><strong>Живлення</strong> — контакти 5 В і 3.3 В («плюс») та кілька <strong>GND</strong> («земля», «мінус»).</li>
+    </ul>
+
+    <div class="callout tip">
+      <h4>💡 Головне про плату</h4>
+      <p>Робоча напруга — 5 В, тактова частота — 16 МГц. Максимальний струм одного піна — 40 мА. Цього досить, щоб керувати світлодіодами, кнопками й багатьма датчиками.</p>
+    </div>
+
+    <h3 class="mt-2">Вбудований світлодіод</h3>
+    <p>На платі вже є маленький світлодіод, позначений літерою <strong>«L»</strong>. Він з'єднаний із <strong>піном 13</strong>. Саме з нього почнемо — жодних дротів не треба.</p>
+
+    <figure>
+      <svg class="schematic" viewBox="0 0 460 180" role="img" aria-label="Плата Arduino UNO з вбудованим світлодіодом L біля піна 13">
+        <rect class="board" x="60" y="40" width="300" height="110" rx="12"/>
+        <text class="lbl" x="210" y="100" text-anchor="middle">Arduino UNO</text>
+        <circle class="part" cx="300" cy="66" r="8"/>
+        <text class="lbl-s" x="315" y="70">світлодіод «L»</text>
+        <text class="lbl-s" x="250" y="140" text-anchor="middle">керується піном 13</text>
+      </svg>
+      <figcaption>Вбудований світлодіод «L» на платі під'єднаний до піна 13.</figcaption>
+    </figure>
+
+    <h3 class="mt-2">Як влаштована програма (скетч)</h3>
+    <p>Будь-яка програма для Arduino складається з двох частин:</p>
+    <ul class="steps mt-1">
+      <li><code>void setup()</code> — виконується <strong>один раз</strong> під час запуску. Тут ми налаштовуємо піни.</li>
+      <li><code>void loop()</code> — повторюється <strong>безкінечно</strong>, поки є живлення. Тут — основна робота.</li>
+    </ul>
+    <p>Основні команди цього уроку:</p>
+    <ul class="steps mt-1">
+      <li><code>pinMode(пін, OUTPUT)</code> — налаштувати пін на «вихід» (щоб подавати напругу).</li>
+      <li><code>digitalWrite(пін, HIGH/LOW)</code> — подати напругу (<code>HIGH</code> = 5 В) або прибрати (<code>LOW</code> = 0 В).</li>
+      <li><code>delay(мс)</code> — пауза в мілісекундах (1000 мс = 1 с).</li>
+    </ul>
+  </section>
+
+  <!-- 4. НАЛАШТУВАННЯ IDE -->
+  <section>
+    <h2>⚙️ Налаштування Arduino IDE</h2>
+    <p>Щоб писати програми, потрібне середовище <strong>Arduino IDE</strong> (безкоштовне, з офіційного сайту <code>arduino.cc</code>). Перед завантаженням коду:</p>
+    <ol class="steps mt-1">
+      <li>Під'єднай плату USB-кабелем — на ній засвітиться зелений світлодіод <strong>ON</strong>.</li>
+      <li>У меню <strong>Інструменти → Плата</strong> обери <em>Arduino Uno</em>.</li>
+      <li>У меню <strong>Інструменти → Порт</strong> обери порт, до якого під'єднана плата.</li>
+      <li>Напиши код і натисни <strong>Завантажити</strong> (Upload).</li>
+    </ol>
+    <div class="callout tip">
+      <h4>💡 У Tinkercad простіше</h4>
+      <p>Онлайн-симулятор Tinkercad уже містить плату й редактор коду — нічого встановлювати не треба. Ідеально, щоб спробувати вдома або без набору.</p>
+    </div>
+  </section>
+
+  <!-- 5. КОД: БЛИМАННЯ -->
+  <section>
+    <h2>💡 Крок 1. Блимаємо вбудованим світлодіодом</h2>
+    <p>Наша перша програма вмикатиме й вимикатиме світлодіод із паузою в 1 секунду. Код у <code>loop()</code>, дійшовши до кінця, починається спочатку — і так безкінечно.</p>
+
+    <div class="code-block">
+      <div class="code-head"><span>blink.ino · Arduino C++</span><button class="copy-btn" type="button">Копіювати</button></div>
+      <pre><code><span class="tok-key">int</span> ledPin = <span class="tok-num">13</span>;           <span class="tok-com">// вбудований світлодіод «L»</span>
+
+<span class="tok-key">void</span> <span class="tok-fn">setup</span>() {
+  <span class="tok-fn">pinMode</span>(ledPin, <span class="tok-key">OUTPUT</span>); <span class="tok-com">// пін 13 — на вихід</span>
+}
+
+<span class="tok-key">void</span> <span class="tok-fn">loop</span>() {
+  <span class="tok-fn">digitalWrite</span>(ledPin, <span class="tok-key">HIGH</span>); <span class="tok-com">// увімкнути (5 В)</span>
+  <span class="tok-fn">delay</span>(<span class="tok-num">1000</span>);                <span class="tok-com">// чекати 1 секунду</span>
+  <span class="tok-fn">digitalWrite</span>(ledPin, <span class="tok-key">LOW</span>);  <span class="tok-com">// вимкнути (0 В)</span>
+  <span class="tok-fn">delay</span>(<span class="tok-num">1000</span>);                <span class="tok-com">// ще секунда</span>
+}</code></pre>
+    </div>
+
+    <div class="callout">
+      <h4>🔬 Спробуй сам</h4>
+      <p>Підбери такі значення <code>delay()</code>, за яких мигання стане <strong>непомітним для ока</strong>. З якого приблизно значення світлодіод здається таким, що просто світиться?</p>
+    </div>
+
+    <h3 class="mt-2">Покрокова практика</h3>
+    <div class="paths">
+      <div class="path">
+        <span class="path-tag">🧰 Реальний набір</span>
+        <ol class="steps mt-1">
+          <li>Під'єднай Arduino до USB.</li>
+          <li>У Arduino IDE обери плату <em>Arduino Uno</em> і порт.</li>
+          <li>Встав код у редактор.</li>
+          <li>Натисни «Upload» і подивись на світлодіод «L».</li>
+        </ol>
+      </div>
+      <div class="path">
+        <span class="path-tag">💻 Tinkercad</span>
+        <ol class="steps mt-1">
+          <li>Створи новий проєкт Circuits.</li>
+          <li>Додай плату Arduino UNO.</li>
+          <li>Встав код у редактор коду.</li>
+          <li>Натисни «Start Simulation».</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. КОД: SERIAL -->
+  <section>
+    <h2>🖥️ Крок 2. Виводимо повідомлення на комп'ютер</h2>
+    <p>Мікроконтролер може «розповідати» комп'ютеру, що він робить, — через <strong>COM-порт</strong>. Це дуже корисно, щоб бачити, що відбувається всередині програми. Повідомлення з'являються у вікні <strong>Serial Monitor</strong>.</p>
+    <p>Спочатку в <code>setup()</code> запускаємо зв'язок командою <code>Serial.begin(9600)</code>, а далі командою <code>Serial.println(...)</code> надсилаємо текст.</p>
+
+    <div class="code-block">
+      <div class="code-head"><span>blink_serial.ino · Arduino C++</span><button class="copy-btn" type="button">Копіювати</button></div>
+      <pre><code><span class="tok-key">int</span> ledPin = <span class="tok-num">13</span>;
+
+<span class="tok-key">void</span> <span class="tok-fn">setup</span>() {
+  <span class="tok-fn">pinMode</span>(ledPin, <span class="tok-key">OUTPUT</span>);
+  <span class="tok-fn">Serial</span>.<span class="tok-fn">begin</span>(<span class="tok-num">9600</span>); <span class="tok-com">// запускаємо зв'язок із ПК</span>
+}
+
+<span class="tok-key">void</span> <span class="tok-fn">loop</span>() {
+  <span class="tok-fn">digitalWrite</span>(ledPin, <span class="tok-key">HIGH</span>);
+  <span class="tok-fn">Serial</span>.<span class="tok-fn">println</span>(<span class="tok-str">"Світлодіод: увімкнено"</span>);
+  <span class="tok-fn">delay</span>(<span class="tok-num">1000</span>);
+  <span class="tok-fn">digitalWrite</span>(ledPin, <span class="tok-key">LOW</span>);
+  <span class="tok-fn">Serial</span>.<span class="tok-fn">println</span>(<span class="tok-str">"Світлодіод: вимкнено"</span>);
+  <span class="tok-fn">delay</span>(<span class="tok-num">1000</span>);
+}</code></pre>
+    </div>
+    <div class="callout tip">
+      <h4>💡 Де побачити текст</h4>
+      <p>В Arduino IDE відкрий <strong>Інструменти → Serial Monitor</strong> (у Tinkercad — кнопка «Serial Monitor» під кодом). Переконайся, що швидкість — <strong>9600</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 7. TINKERCAD -->
+  <section>
+    <h2>🧪 Спробуй прямо тут</h2>
+    <p>Нижче — місце для живої симуляції Tinkercad. Учитель може вставити сюди готовий проєкт (як це зробити — у <a href="../README.md">README</a>).</p>
+    <div class="embed">
+      <!-- ЩОБ УВІМКНУТИ ЖИВУ СИМУЛЯЦІЮ: розкоментуй iframe і встав свій код вбудовування з Tinkercad
+      <iframe title="Симуляція схеми у Tinkercad" loading="lazy"
+              src="https://www.tinkercad.com/embed/ВАШ_КОД_ПРОЄКТУ?editbtn=1"></iframe>
+      -->
+      <div class="embed-placeholder">
+        <div class="big" aria-hidden="true">🧪</div>
+        <p><strong>Тут з'явиться симуляція Tinkercad</strong><br>Поки що відкрий проєкт у новій вкладці й збери схему сам.</p>
+        <a class="btn btn-primary" href="https://www.tinkercad.com/circuits" target="_blank" rel="noopener">Відкрити Tinkercad →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ПЕРЕВІР СЕБЕ -->
+  <section>
+    <h2>✅ Перевір себе</h2>
+    <p>Без оцінок — лише підказки. Обери відповідь, щоб одразу побачити пояснення.</p>
+    <div class="quiz mt-1">
+
+      <div class="quiz-q">
+        <p class="q-text">1. Яка функція виконується лише один раз під час запуску?</p>
+        <div class="quiz-opts">
+          <button class="quiz-opt" type="button" data-correct="true"><span class="mark">А</span> <code>setup()</code></button>
+          <button class="quiz-opt" type="button"><span class="mark">Б</span> <code>loop()</code></button>
+          <button class="quiz-opt" type="button"><span class="mark">В</span> <code>delay()</code></button>
+        </div>
+        <div class="quiz-feedback" data-ok="Так! setup() виконується один раз, а loop() — постійно." data-no="setup() виконується один раз на старті; loop() повторюється безкінечно."></div>
+      </div>
+
+      <div class="quiz-q">
+        <p class="q-text">2. До якого піна під'єднаний вбудований світлодіод «L»?</p>
+        <div class="quiz-opts">
+          <button class="quiz-opt" type="button"><span class="mark">А</span> Пін 5</button>
+          <button class="quiz-opt" type="button" data-correct="true"><span class="mark">Б</span> Пін 13</button>
+          <button class="quiz-opt" type="button"><span class="mark">В</span> Пін GND</button>
+        </div>
+        <div class="quiz-feedback" data-ok="Правильно — вбудований світлодіод на піні 13." data-no="Вбудований світлодіод «L» під'єднаний до піна 13."></div>
+      </div>
+
+      <div class="quiz-q">
+        <p class="q-text">3. Що означає <code>digitalWrite(13, HIGH)</code>?</p>
+        <div class="quiz-opts">
+          <button class="quiz-opt" type="button" data-correct="true"><span class="mark">А</span> Подати на пін 13 напругу 5 В</button>
+          <button class="quiz-opt" type="button"><span class="mark">Б</span> Зчитати напругу з піна 13</button>
+          <button class="quiz-opt" type="button"><span class="mark">В</span> Вимкнути пін 13</button>
+        </div>
+        <div class="quiz-feedback" data-ok="Так — HIGH подає 5 В, LOW прибирає напругу." data-no="HIGH подає на пін 5 В (вмикає), LOW — 0 В (вимикає)."></div>
+      </div>
+
+      <div class="quiz-q">
+        <p class="q-text">4. У яких одиницях працює <code>delay()</code>?</p>
+        <div class="quiz-opts">
+          <button class="quiz-opt" type="button"><span class="mark">А</span> У секундах</button>
+          <button class="quiz-opt" type="button" data-correct="true"><span class="mark">Б</span> У мілісекундах</button>
+          <button class="quiz-opt" type="button"><span class="mark">В</span> У хвилинах</button>
+        </div>
+        <div class="quiz-feedback" data-ok="Саме так: delay(1000) — це пауза 1 секунда." data-no="delay() рахує мілісекунди: 1000 мс = 1 секунда."></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 9. ВИКЛИК -->
+  <section>
+    <h2>🏆 Завдання-виклик (для портфоліо)</h2>
+    <div class="callout">
+      <h4>Сигнал SOS</h4>
+      <p>Запрограмуй вбудований світлодіод передавати сигнал <strong>SOS</strong> азбукою Морзе: три коротких спалахи (· · ·), три довгих (− − −), три коротких (· · ·), а потім пауза — і спочатку. Підбери тривалості <code>delay()</code> для «крапки» та «тире». Збережи код або скріншот у портфоліо.</p>
+    </div>
+  </section>
+
+  <!-- 10. РЕФЛЕКСІЯ -->
+  <section>
+    <h2>🪞 Рефлексія</h2>
+    <p>Кілька хвилин подумай над уроком. Відповіді збережуться у твоєму <a href="../pupil/portfolio.html">портфоліо</a>.</p>
+
+    <div class="field">
+      <label for="r1">Що нового я дізнався про плату Arduino та її піни?</label>
+      <textarea id="r1" data-reflect="r1" data-reflect-q="Що нового я дізнався про плату Arduino та її піни?"></textarea>
+    </div>
+    <div class="field">
+      <label for="r2">Навіщо потрібні дві функції — setup() і loop()?</label>
+      <textarea id="r2" data-reflect="r2" data-reflect-q="Навіщо потрібні дві функції — setup() і loop()?"></textarea>
+    </div>
+    <div class="field">
+      <label for="r3">Що було найскладнішим — і як я з цим упорався?</label>
+      <textarea id="r3" data-reflect="r3" data-reflect-q="Що було найскладнішим — і як я з цим упорався?"></textarea>
+    </div>
+    <p class="callout small" data-login-note hidden>🔐 Щоб зберегти прогрес і рефлексію, спочатку <a href="../pupil/login.html">увійди або зареєструйся</a>.</p>
+    <button class="btn btn-ghost" type="button" data-save-reflection>Зберегти рефлексію</button>
+  </section>
+
+  <!-- ЗАВЕРШЕННЯ -->
+  <section>
+    <div class="card center">
+      <h3>Готово опанувати цей урок?</h3>
+      <p class="mt-1">Познач урок завершеним — і він зарахується у твоє портфоліо.</p>
+      <p class="muted small" data-login-note hidden>Для збереження прогресу потрібен профіль учня.</p>
+      <button class="btn btn-primary mt-1" type="button" data-mark-done>Позначити урок завершеним</button>
+    </div>
+
+    <nav class="lesson-nav" aria-label="Навігація уроками">
+      <a class="btn btn-ghost" href="../program.html">← До програми</a>
+      <a class="btn btn-ghost" href="../lessons/lesson1.html">Наступний урок: Світлофор →</a>
+    </nav>
+  </section>
+
+</article>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../js/layout.js"></script>
+<script src="../js/lessons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>

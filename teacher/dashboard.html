@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Панель вчителя — SPARK</title>
+<meta name="description" content="Панель вчителя SPARK: прогрес і роботи всіх учнів класу.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body data-base="../">
+<div id="site-header"></div>
+
+<main id="main">
+  <section>
+    <div class="container" id="teacher-root">
+      <div class="section-head reveal">
+        <span class="eyebrow">Для вчителя</span>
+        <h2>Панель класу</h2>
+        <p>Тут видно прогрес і роздуми всіх учнів. Доступ мають лише акаунти з роллю «вчитель».</p>
+      </div>
+
+      <!-- Не увійшов -->
+      <div class="card reveal" id="teacher-gate" hidden>
+        <div class="card-icon" aria-hidden="true">🔐</div>
+        <h3>Спочатку увійди</h3>
+        <p>Ця сторінка доступна лише вчителям після входу.</p>
+        <a class="btn btn-primary mt-1" href="../pupil/login.html">Вхід →</a>
+      </div>
+
+      <!-- Увійшов, але не вчитель -->
+      <div class="card reveal" id="teacher-denied" hidden>
+        <div class="card-icon" aria-hidden="true">🚧</div>
+        <h3>Доступ лише для вчителів</h3>
+        <p>Твій акаунт не має ролі «вчитель». Якщо ти вчитель — попроси адміністратора призначити роль (див. <code>SUPABASE_SETUP.md</code>, розділ «Роль вчителя»).</p>
+        <a class="btn btn-ghost mt-1" href="../pupil/portfolio.html">До мого портфоліо</a>
+      </div>
+
+      <!-- Панель вчителя -->
+      <div id="teacher-content" hidden>
+        <div class="progress-wrap">
+          <span class="chip chip-go" id="teacher-hello"></span>
+          <button class="btn btn-ghost" type="button" data-logout>Вийти</button>
+        </div>
+
+        <!-- Створити клас -->
+        <div class="card mt-2">
+          <h3>➕ Новий клас</h3>
+          <p class="muted small">Створи клас і дай його код учням — вони приєднаються під час реєстрації.</p>
+          <div class="field">
+            <label for="class-name">Назва класу</label>
+            <input type="text" id="class-name" placeholder="напр. 7-А клас">
+          </div>
+          <button class="btn btn-primary" type="button" data-create-class>Створити клас</button>
+          <p class="auth-msg" id="class-msg" role="alert"></p>
+        </div>
+
+        <p class="muted small mt-2" id="teacher-stats">Завантаження…</p>
+        <div id="teacher-classes"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../js/layout.js"></script>
+<script src="../js/lessons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/scripts.js"></script>
+</body>
+</html>
